@@ -1,3 +1,5 @@
+Die Ausgabe des Scripts gibt dir lediglich einen Überblick darüber, wo und welche Duplikate in deinen Bibliotheken vorhanden sind. Basierend auf dieser Information kannst du dann selbst entscheiden, ob und wie du mit den Duplikaten verfahren möchtest, sei es durch manuelles Löschen über das Dateisystem oder durch Bereinigung über die Jellyfin-Benutzeroberfläche.
+
 Um das `jellyfin-find-duplicates` Script zu verwenden, folge diesen Schritten, beginnend mit dem Klonen des Git-Repositories bis hin zur Ausführung des Scripts, um Duplikate in deiner Jellyfin-Bibliothek zu finden. Diese Anleitung setzt voraus, dass du grundlegende Kenntnisse im Umgang mit der Kommandozeile und Git hast, sowie Zugriff auf einen Server oder PC mit installiertem Git, curl, und jq.
 
 ### 1. Git Repository klonen
