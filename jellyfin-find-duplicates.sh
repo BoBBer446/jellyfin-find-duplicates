@@ -4,7 +4,7 @@
 # Adaption based on https://github.com/tremby/jellyfin-find-duplicates
 
 function usage() {
-	cat <<END
+        cat <<END
 Usage: $(basename "$0") [-h] [--help]
 
 Find duplicate TV show episodes and movies in a Jellyfin library.
@@ -36,64 +36,66 @@ END
 
 # Deal with any arguments
 while [ $# -gt 0 ]; do
-	case "$1" in
-		"-h"|"--help")
-			usage
-			exit 0
-			;;
-		*)
-			echo "Unexpected argument \"$1\"" >&2
-			echo >&2
-			usage >&2
-			exit 65
-	esac
-	shift
+        case "$1" in
+                "-h"|"--help")
+                        usage
+                        exit 0
+                        ;;
+                *)
+                        echo "Unexpected argument \"$1\"" >&2
+                        echo >&2
+                        usage >&2
+                        exit 65
+        esac
+        shift
 done
 
-# Ensure we have an XDG_CONFIG_HOME
-if [ -z "$XDG_CONFIG_HOME" ]; then
-	XDG_CONFIG_HOME="$HOME/.config"
+# Bestimme den Pfad des aktuellen Script-Verzeichnisses
+SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )"
+
+# Lade die Konfiguration aus der Datei im gleichen Verzeichnis
+CONFIG_FILE="$SCRIPT_DIR/jellyfin-find-duplicates.conf"
+if [ -f "$CONFIG_FILE" ]; then
+    . "$CONFIG_FILE"
+else
+    echo "Konfigurationsdatei $CONFIG_FILE nicht gefunden." >&2
+    exit 1
 fi
 
-# Load config from a config file if it exists
-if [ -f "$XDG_CONFIG_HOME/jellyfin-find-duplicates.conf" ]; then
-	. "$XDG_CONFIG_HOME/jellyfin-find-duplicates.conf"
-fi
-
-# Ensure we have the configuration we need
+# Stelle sicher, dass wir die Konfiguration haben, die wir benötigen
 if [ -z "$JELLYFIN_HOST" ]; then
-	echo "JELLYFIN_HOST must be set" >&2
-	exit 65
+    echo "JELLYFIN_HOST must be set" >&2
+    exit 65
 fi
 if [ -z "$JELLYFIN_TOKEN" ]; then
-	echo "JELLYFIN_TOKEN must be set" >&2
-	exit 65
+    echo "JELLYFIN_TOKEN must be set" >&2
+    exit 65
 fi
 if [ -z "$JELLYFIN_USER" ]; then
-	echo "JELLYFIN_USER must be set" >&2
-	exit 65
+    echo "JELLYFIN_USER must be set" >&2
+    exit 65
 fi
 if [ -z "$JELLYFIN_SHOWS_LIB_NAME" ] || [ -z "$JELLYFIN_MOVIES_LIB_NAME" ]; then
-	echo "Both JELLYFIN_SHOWS_LIB_NAME and JELLYFIN_MOVIES_LIB_NAME must be set" >&2
-	exit 65
+    echo "Both JELLYFIN_SHOWS_LIB_NAME and JELLYFIN_MOVIES_LIB_NAME must be set" >&2
+    exit 65
 fi
 
 # Ensure we have the binaries we need
 if ! command -v curl &>/dev/null; then
-	echo "Expected the binary \"curl\" to be available" >&2
-	exit 69
+        echo "Expected the binary \"curl\" to be available" >&2
+        exit 69
 fi
 if ! command -v jq &>/dev/null; then
-	echo "Expected the binary \"jq\" to be available" >&2
-	exit 69
+        echo "Expected the binary \"jq\" to be available" >&2
+        exit 69
 fi
 if ! command -v date &>/dev/null; then
-	echo "Expected the binary \"date\" to be available" >&2
-	exit 69
+        echo "Expected the binary \"date\" to be available" >&2
+        exit 69
 fi
 
 function req() {
-	curl --silent --header "Accept: application/json" --header "Authorization: MediaBrowser Token=\"$JELLYFIN_TOKEN\"" "$JELLYFIN_HOST$1"
+        curl --silent --header "Accept: application/json" --header "Authorization: MediaBrowser Token=\"$JELLYFIN_TOKEN\"" "$JELLYFIN_HOST$1"
 }
 
 USER_ID=$(req /Users | jq --raw-output ".[] | select(.Name==\"$JELLYFIN_USER\") | .Id")
