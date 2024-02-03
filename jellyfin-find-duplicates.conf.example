@@ -11,13 +11,16 @@
 # if they will be provided by other means.
 
 # Jellyfin URL scheme and hostname (no trailing slash)
-JELLYFIN_HOST=https://jellyfin.local
+JELLYFIN_HOST=http://192.168.178.36:8096
 
 # Jellyfin API token (Jellyfin -> dashboard -> advanced -> API keys)
-JELLYFIN_TOKEN=0123456789abcdef0123456789abcdef
+JELLYFIN_TOKEN=
 
 # Jellyfin user name
-JELLYFIN_USER=myjellyfinusername
+JELLYFIN_USER=
 
 # TV shows library name
-JELLYFIN_SHOWS_LIB_NAME=Shows
+JELLYFIN_SHOWS_LIB_NAME=Serien
+
+# Movies library name
+JELLYFIN_MOVIES_LIB_NAME=Filme
