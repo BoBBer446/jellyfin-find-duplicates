@@ -11,8 +11,6 @@ git clone https://github.com/BoBBer446/jellyfin-find-duplicates
 cd jellyfin-find-duplicates
 ```
 
-Ersetze `https://github.com/deinBenutzername/jellyfin-find-duplicates.git` mit der tatsächlichen URL des Git-Repositories.
-
 ### 2. Abhängigkeiten installieren
 
 Stelle sicher, dass die Abhängigkeiten `curl` und `jq` installiert sind. Auf Debian-basierten Systemen kannst du sie mit folgendem Befehl installieren:
@@ -26,7 +24,7 @@ sudo apt update && sudo apt install curl jq -y
 Innerhalb des geklonten Repositories findest du eine Beispielkonfigurationsdatei, z.B. `jellyfin-find-duplicates.conf.example`. Kopiere diese Datei zu deinem `$XDG_CONFIG_HOME` Verzeichnis, oder, falls diese Umgebungsvariable nicht gesetzt ist, in dein `~/.config` Verzeichnis:
 
 ```bash
-cp jellyfin-find-duplicates.conf.example ~/.config/jellyfin-find-duplicates.conf
+cp jellyfin-find-duplicates.conf.example jellyfin-find-duplicates.conf
 ```
 
 ### 4. Konfigurationsdatei bearbeiten
@@ -34,7 +32,7 @@ cp jellyfin-find-duplicates.conf.example ~/.config/jellyfin-find-duplicates.conf
 Öffne die Konfigurationsdatei mit einem Texteditor deiner Wahl:
 
 ```bash
-nano ~/.config/jellyfin-find-duplicates.conf
+nano jellyfin-find-duplicates.conf
 ```
 
 Bearbeite die Datei, um die erforderlichen Konfigurationsvariablen anzupassen:
