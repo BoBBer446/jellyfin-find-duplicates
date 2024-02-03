@@ -7,7 +7,7 @@ Um das `jellyfin-find-duplicates` Script zu verwenden, folge diesen Schritten, b
 Zuerst musst du das Git-Repository, das das `jellyfin-find-duplicates` Script enthält, auf deinen Server oder deinen lokalen Computer klonen. Angenommen, das Repository ist öffentlich auf GitHub verfügbar:
 
 ```bash
-git clone https://github.com/deinBenutzername/jellyfin-find-duplicates.git
+git clone https://github.com/BoBBer446/jellyfin-find-duplicates
 cd jellyfin-find-duplicates
 ```
 
